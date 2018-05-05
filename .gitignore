@@ -1,0 +1,14 @@
+Build
+*.user
+*.pdb
+*.pch
+*.idb
+*.bsc
+*.db
+*.suo
+*.tlog
+*.obj
+*.log
+*.res
+*.sbr
+*.inf
