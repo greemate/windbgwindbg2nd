@@ -1,0 +1,144 @@
+ MyDrv
+
+ Timestamp is 5ae81737 (Tue May  1 16:28:55 2018)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 000001aeH .text$mn                CODE
+ 0001:000001ae 00000062H .text$s                 CODE
+ 0002:00000000 00000070H .idata$5                DATA
+ 0002:00000070 00000010H .00cfg                  DATA
+ 0002:00000080 000000d8H .rdata                  DATA
+ 0002:00000158 00000174H .rdata$zzzdbg           DATA
+ 0003:00000000 00000020H .data                   DATA
+ 0003:00000020 00000120H .bss                    DATA
+ 0004:00000000 000002faH PAGE                    CODE
+ 0004:000002fa 00000024H PAGE$s                  CODE
+ 0005:00000000 0000011aH INIT                    CODE
+ 0005:0000011a 00000052H INIT$s                  CODE
+ 0005:0000016c 00000014H .idata$2                CODE
+ 0005:00000180 00000014H .idata$3                CODE
+ 0005:00000194 00000070H .idata$4                CODE
+ 0005:00000204 0000024aH .idata$6                CODE
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map         00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___guard_flags             00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0001:00000000       _BugCheck50@0              00401000 f   MyDrv.obj
+ 0001:00000008       _BugCheck7F@0              00401008 f   MyDrv.obj
+ 0001:00000014       _BugCheck8E@0              00401014 f   MyDrv.obj
+ 0001:00000040       _BugCheckA@0               00401040 f   MyDrv.obj
+ 0001:00000050       _BugCheckC4@0              00401050 f   MyDrv.obj
+ 0001:0000006c       _BugCheckD6@0              0040106c f   MyDrv.obj
+ 0001:00000084       _Hang@0                    00401084 f   MyDrv.obj
+ 0001:000000d4       _HangDpcRoutine@16         004010d4 f   MyDrv.obj
+ 0001:000000d6       _MyStrCpy@8                004010d6 f   MyDrv.obj
+ 0001:00000112       _OnBreakPoint@0            00401112 f   MyDrv.obj
+ 0001:0000012a       _OpenClose@4               0040112a f   MyDrv.obj
+ 0001:000001a6       _DbgPrint                  004011a6 f   ntoskrnl:ntoskrnl.exe
+ 0001:000001ac       @_guard_check_icall_nop@4  004011ac f i BufferOverflowK:guard_support.obj
+ 0001:000001ae       ??_C@_1CA@LJKEIIIB@?$AA?2?$AA?$DP?$AA?$DP?$AA?2?$AAC?$AA?3?$AA?2?$AAb?$AAo?$AAo?$AAt?$AA?4?$AAi?$AAn?$AAi?$AA?$AA@FNODOBFM@ 004011ae     MyDrv.obj
+ 0001:000001ce       ??_C@_0O@JGEJIFBJ@BugCheck?50x8E?$AA@FNODOBFM@ 004011ce     MyDrv.obj
+ 0001:000001dc       ??_C@_07PFLHHDCC@Find?5Me?$AA@FNODOBFM@ 004011dc     MyDrv.obj
+ 0001:000001e4       ??_C@_0BK@IFLFIICP@PrintBreakPoint?5Function?6?$AA@FNODOBFM@ 004011e4     MyDrv.obj
+ 0001:000001fe       ??_C@_0BC@MHHLDEIM@Hello?5Debugging?$CB?6?$AA@FNODOBFM@ 004011fe     MyDrv.obj
+ 0002:00000000       __imp__RtlInitUnicodeString@8 00402000     ntoskrnl:ntoskrnl.exe
+ 0002:00000004       __imp__DbgPrint            00402004     ntoskrnl:ntoskrnl.exe
+ 0002:00000008       __imp__KeInitializeDpc@12  00402008     ntoskrnl:ntoskrnl.exe
+ 0002:0000000c       __imp__KeInsertQueueDpc@12 0040200c     ntoskrnl:ntoskrnl.exe
+ 0002:00000010       __imp__KeSetTargetProcessorDpc@8 00402010     ntoskrnl:ntoskrnl.exe
+ 0002:00000014       __imp__KeInitializeEvent@12 00402014     ntoskrnl:ntoskrnl.exe
+ 0002:00000018       __imp__KeSetEvent@12       00402018     ntoskrnl:ntoskrnl.exe
+ 0002:0000001c       __imp__KeInitializeMutex@8 0040201c     ntoskrnl:ntoskrnl.exe
+ 0002:00000020       __imp__KeReleaseMutex@8    00402020     ntoskrnl:ntoskrnl.exe
+ 0002:00000024       __imp__KeDelayExecutionThread@12 00402024     ntoskrnl:ntoskrnl.exe
+ 0002:00000028       __imp__KeEnterCriticalRegion@0 00402028     ntoskrnl:ntoskrnl.exe
+ 0002:0000002c       __imp__KeLeaveCriticalRegion@0 0040202c     ntoskrnl:ntoskrnl.exe
+ 0002:00000030       __imp__KeWaitForSingleObject@20 00402030     ntoskrnl:ntoskrnl.exe
+ 0002:00000034       __imp__ExAllocatePool@8    00402034     ntoskrnl:ntoskrnl.exe
+ 0002:00000038       __imp__ExFreePoolWithTag@8 00402038     ntoskrnl:ntoskrnl.exe
+ 0002:0000003c       __imp__ExInitializeResourceLite@4 0040203c     ntoskrnl:ntoskrnl.exe
+ 0002:00000040       __imp__ExAcquireResourceExclusiveLite@8 00402040     ntoskrnl:ntoskrnl.exe
+ 0002:00000044       __imp_@ExReleaseResourceLite@4 00402044     ntoskrnl:ntoskrnl.exe
+ 0002:00000048       __imp__ExDeleteResourceLite@4 00402048     ntoskrnl:ntoskrnl.exe
+ 0002:0000004c       __imp_@IofCompleteRequest@8 0040204c     ntoskrnl:ntoskrnl.exe
+ 0002:00000050       __imp__IoCreateDevice@28   00402050     ntoskrnl:ntoskrnl.exe
+ 0002:00000054       __imp__IoCreateSymbolicLink@8 00402054     ntoskrnl:ntoskrnl.exe
+ 0002:00000058       __imp__IoDeleteDevice@4    00402058     ntoskrnl:ntoskrnl.exe
+ 0002:0000005c       __imp__IoDeleteSymbolicLink@4 0040205c     ntoskrnl:ntoskrnl.exe
+ 0002:00000060       __imp__ZwCreateFile@44     00402060     ntoskrnl:ntoskrnl.exe
+ 0002:00000064       __imp__ZwClose@4           00402064     ntoskrnl:ntoskrnl.exe
+ 0002:00000068       __imp__KeNumberProcessors  00402068     ntoskrnl:ntoskrnl.exe
+ 0002:0000006c       \177ntoskrnl_NULL_THUNK_DATA 0040206c     ntoskrnl:ntoskrnl.exe
+ 0002:00000070       ___guard_check_icall_fptr  00402070     BufferOverflowK:guard_support.obj
+ 0002:000000b8       __load_config_used         004020b8     BufferOverflowK:loadcfg.obj
+ 0003:00000000       _g_ulGlobal                00403000     MyDrv.obj
+ 0003:00000004       ___security_cookie         00403004     BufferOverflowK:gs_support.obj
+ 0003:00000008       ___security_cookie_complement 00403008     BufferOverflowK:gs_support.obj
+ 0003:00000020       _HangDpc                   00403020     <common>
+ 0003:00000040       _event                     00403040     <common>
+ 0003:00000060       _EresourceB                00403060     <common>
+ 0003:000000a0       _EresourceA                004030a0     <common>
+ 0003:000000e0       _MutexB                    004030e0     <common>
+ 0003:00000100       _MutexA                    00403100     <common>
+ 0003:00000120       _Event                     00403120     <common>
+ 0003:00000130       _g_szBuffer                00403130     <common>
+ 0004:00000000       _MyDrvCreateClose@8        00404000 f   MyDrv.obj
+ 0004:00000036       _MyDrvDeviceControl@8      00404036 f   MyDrv.obj
+ 0004:000002b0       _MyDrvUnload@4             004042b0 f   MyDrv.obj
+ 0004:000002fa       ??_C@_1CE@LNDBPGOK@?$AA?2?$AAD?$AAo?$AAs?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAs?$AA?2?$AAM?$AAy?$AAD?$AAr?$AAv?$AA?$AA@NNGAKEGL@ 004042fa     MyDrv.obj
+ 0005:00000000       _DriverEntry@8             00405000 f   MyDrv.obj
+ 0005:000000d0       _GsDriverEntry@8           004050d0 f   BufferOverflowK:gs_support.obj
+ 0005:000000e0       ___security_init_cookie    004050e0 f   BufferOverflowK:gs_support.obj
+ 0005:0000011a       ??_C@_1BM@NAINCILO@?$AA?2?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?2?$AAM?$AAy?$AAD?$AAr?$AAv?$AA?$AA@PBOPGDP@ 0040511a     MyDrv.obj
+ 0005:00000136       ??_C@_0BB@ENJJLKKL@DeviceObject?5?$CFp?6?$AA@PBOPGDP@ 00405136     MyDrv.obj
+ 0005:00000148       ??_C@_1CE@LNDBPGOK@?$AA?2?$AAD?$AAo?$AAs?$AAD?$AAe?$AAv?$AAi?$AAc?$AAe?$AAs?$AA?2?$AAM?$AAy?$AAD?$AAr?$AAv?$AA?$AA@PBOPGDP@ 00405148     MyDrv.obj
+ 0005:0000016c       __IMPORT_DESCRIPTOR_ntoskrnl 0040516c     ntoskrnl:ntoskrnl.exe
+ 0005:00000180       __NULL_IMPORT_DESCRIPTOR   00405180     ntoskrnl:ntoskrnl.exe
+
+ entry point at        0005:000000d0
+
+ Static symbols
+
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0005:00000440       .idata$6                   00405440     ntoskrnl:ntoskrnl.exe

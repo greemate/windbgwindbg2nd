@@ -1,6 +1,6 @@
-Build
+Debug
+vc141.pdb
 *.user
-*.pdb
 *.pch
 *.idb
 *.bsc
