@@ -1,6 +1,6 @@
  MyDrv
 
- Timestamp is 5ae816f5 (Tue May  1 16:27:49 2018)
+ Timestamp is 5af4643a (Fri May 11 00:24:42 2018)
 
  Preferred load address is 0000000140000000
 
@@ -12,8 +12,8 @@
  0002:000000e0 00000010H .00cfg                  DATA
  0002:000000f0 00000000H .gfids$y                DATA
  0002:000000f0 00000140H .rdata                  DATA
- 0002:00000230 000001a8H .rdata$zzzdbg           DATA
- 0002:000003d8 00000084H .xdata                  DATA
+ 0002:00000230 000001b0H .rdata$zzzdbg           DATA
+ 0002:000003e0 00000084H .xdata                  DATA
  0003:00000000 00000020H .data                   DATA
  0003:00000020 00000210H .bss                    DATA
  0004:00000000 00000090H .pdata                  DATA
@@ -147,18 +147,18 @@
  0000:ffff8000       .debug$S                   0000000140000000     ntoskrnl:ntoskrnl.exe
  0000:ffff8000       .debug$S                   0000000140000000     ntoskrnl:ntoskrnl.exe
  0001:00000250       $$000000                   0000000140001250     BufferOverflowK:guard_dispatch.obj
- 0002:000003d8       $unwind$DriverEntry        00000001400023d8     MyDrv.obj
- 0002:000003e8       $unwind$Hang               00000001400023e8     MyDrv.obj
- 0002:000003e8       $unwind$MyDrvCreateClose   00000001400023e8     MyDrv.obj
- 0002:000003f4       $unwind$MyDrvUnload        00000001400023f4     MyDrv.obj
- 0002:000003f4       $unwind$BugCheck8E         00000001400023f4     MyDrv.obj
- 0002:00000400       $unwind$MyDrvDeviceControl 0000000140002400     MyDrv.obj
- 0002:00000414       $unwind$OpenClose          0000000140002414     MyDrv.obj
- 0002:00000424       $unwind$BugCheckC4         0000000140002424     MyDrv.obj
- 0002:00000430       $unwind$BugCheckD6         0000000140002430     MyDrv.obj
- 0002:0000043c       $unwind$OnBreakPoint       000000014000243c     MyDrv.obj
- 0002:00000448       $unwind$GsDriverEntry      0000000140002448     BufferOverflowK:gs_support.obj
- 0002:00000458       $xdatasym                  0000000140002458     BufferOverflowK:guard_dispatch.obj
+ 0002:000003e0       $unwind$DriverEntry        00000001400023e0     MyDrv.obj
+ 0002:000003f0       $unwind$Hang               00000001400023f0     MyDrv.obj
+ 0002:000003f0       $unwind$MyDrvCreateClose   00000001400023f0     MyDrv.obj
+ 0002:000003fc       $unwind$MyDrvUnload        00000001400023fc     MyDrv.obj
+ 0002:000003fc       $unwind$BugCheck8E         00000001400023fc     MyDrv.obj
+ 0002:00000408       $unwind$MyDrvDeviceControl 0000000140002408     MyDrv.obj
+ 0002:0000041c       $unwind$OpenClose          000000014000241c     MyDrv.obj
+ 0002:0000042c       $unwind$BugCheckC4         000000014000242c     MyDrv.obj
+ 0002:00000438       $unwind$BugCheckD6         0000000140002438     MyDrv.obj
+ 0002:00000444       $unwind$OnBreakPoint       0000000140002444     MyDrv.obj
+ 0002:00000450       $unwind$GsDriverEntry      0000000140002450     BufferOverflowK:gs_support.obj
+ 0002:00000460       $xdatasym                  0000000140002460     BufferOverflowK:guard_dispatch.obj
  0004:00000000       $pdata$DriverEntry         0000000140004000     MyDrv.obj
  0004:0000000c       $pdata$MyDrvCreateClose    000000014000400c     MyDrv.obj
  0004:00000018       $pdata$MyDrvUnload         0000000140004018     MyDrv.obj
