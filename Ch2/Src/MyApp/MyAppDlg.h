@@ -60,7 +60,7 @@ protected:
 	afx_msg void OnButtonBugcheck0xbe();
 	afx_msg void OnButtonBugcheck0xd6();
 	afx_msg void OnButtonBugcheck0xc4();
-	afx_msg void OnButtonBugcheck0x8e();
+	afx_msg void OnButtonBugcheck0x3b();
 	afx_msg void OnButtonBugcheck0x7f();
 	afx_msg void OnBreakPoint();
 	afx_msg void OnButtonUserCrash();

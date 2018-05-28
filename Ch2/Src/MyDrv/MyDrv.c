@@ -317,14 +317,14 @@ void MyStrCpy(PCHAR pDest, PCHAR pSrc)
 	pDest[i] = 0;
 }
 
-void BugCheck8E(void)
+void BugCheck3B(void)
 {
 	int i;
 	char *pBuffer[2] = { g_szBuffer, NULL };
 
 	for (i = 0; i < 2; i++)
 	{
-		MyStrCpy( pBuffer[i], "BugCheck 0x8E" );
+		MyStrCpy( pBuffer[i], "BugCheck 0x3B" );
 	}
 }
 
@@ -534,8 +534,8 @@ MyDrvDeviceControl(
         pIrp->IoStatus.Information = 0;
 		break;
 
-	case MYDRV_IOCTL_BUGCHECK_0x8E:
-		BugCheck8E();
+	case MYDRV_IOCTL_BUGCHECK_0x3B:
+		BugCheck3B();
 
         pIrp->IoStatus.Status = STATUS_SUCCESS;
         pIrp->IoStatus.Information = 0;

@@ -105,7 +105,7 @@ BEGIN_MESSAGE_MAP(CMyAppDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0XBE, OnButtonBugcheck0xbe)
 	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0XD6, OnButtonBugcheck0xd6)
 	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0XC4, OnButtonBugcheck0xc4)
-	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0X8E, OnButtonBugcheck0x8e)
+	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0X3B, OnButtonBugcheck0x3b)
 	ON_BN_CLICKED(IDC_BUTTON_BUGCHECK_0X7F, OnButtonBugcheck0x7f)
 	ON_BN_CLICKED(IDC_BUTTON1, OnBreakPoint)
 	ON_BN_CLICKED(IDC_BUTTON_USER_CRASH, OnButtonUserCrash)
@@ -445,9 +445,9 @@ void CMyAppDlg::OnButtonBugcheck0xc4()
 }
 
 
-void CMyAppDlg::OnButtonBugcheck0x8e() 
+void CMyAppDlg::OnButtonBugcheck0x3b() 
 {
-	DWORD dwError = ControlDriver( MYDRV_IOCTL_BUGCHECK_0x8E, NULL, 0, NULL, 0 );
+	DWORD dwError = ControlDriver( MYDRV_IOCTL_BUGCHECK_0x3B, NULL, 0, NULL, 0 );
 
 	Result( dwError );
 }
