@@ -239,7 +239,7 @@ Return Value:
 
 NTSTATUS OpenClose(PCWSTR pPath)
 {
-	char szBuf[0x1000-0x100];		// 4KB-256
+	char szBuf[10] = { 0 };		
 	NTSTATUS ntStatus;
 	OBJECT_ATTRIBUTES objectAttributes;
 	ACCESS_MASK ulMask;
@@ -284,21 +284,21 @@ void BugCheck50(void)
 
 void UseStack2(void)
 {
-	char szBuf[0x1000-0x10];		// 4KB-16
+	char szBuf[3000] = { 0 };
 	
 	OpenClose( L"\\??\\C:\\boot.ini" );
 }
 
 void UseStack1(void)
 {
-	char szBuf[0x1000-0x10];		// 4KB-16
+	char szBuf[3000] = { 0 };
 
 	UseStack2();
 }	
 
 void BugCheck7F(void)
 {
-	char szBuf[0x1000-0x10];		// 4KB-16
+	char szBuf[3000] = { 0 };
 
 	UseStack1();	
 }

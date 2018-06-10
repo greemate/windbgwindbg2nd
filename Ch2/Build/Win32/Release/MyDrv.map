@@ -1,16 +1,16 @@
  MyDrv
 
- Timestamp is 5b0bf2b4 (Mon May 28 21:14:44 2018)
+ Timestamp is 5b1d245b (Sun Jun 10 22:15:07 2018)
 
  Preferred load address is 00400000
 
  Start         Length     Name                   Class
- 0001:00000000 00000304H .text$mn                CODE
- 0001:00000304 00000062H .text$s                 CODE
- 0002:00000000 00000078H .idata$5                DATA
- 0002:00000078 00000008H .00cfg                  DATA
- 0002:00000080 000000d8H .rdata                  DATA
- 0002:00000158 00000178H .rdata$zzzdbg           DATA
+ 0001:00000000 000003f2H .text$mn                CODE
+ 0001:000003f2 00000062H .text$s                 CODE
+ 0002:00000000 00000080H .idata$5                DATA
+ 0002:00000080 00000010H .00cfg                  DATA
+ 0002:00000090 000000d8H .rdata                  DATA
+ 0002:00000168 00000178H .rdata$zzzdbg           DATA
  0003:00000000 00000020H .data                   DATA
  0003:00000020 00000120H .bss                    DATA
  0004:00000000 0000054eH PAGE                    CODE
@@ -19,21 +19,21 @@
  0005:00000170 00000054H INIT$s                  CODE
  0005:000001c4 00000014H .idata$2                CODE
  0005:000001d8 00000014H .idata$3                CODE
- 0005:000001ec 00000078H .idata$4                CODE
- 0005:00000264 0000025eH .idata$6                CODE
+ 0005:000001ec 00000080H .idata$4                CODE
+ 0005:0000026c 00000278H .idata$6                CODE
 
   Address         Publics by Value              Rva+Base       Lib:Object
 
- 0000:00000000       ___enclave_config          00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
  0000:00000000       ___guard_fids_count        00000000     <absolute>
  0000:00000000       ___guard_longjmp_table     00000000     <absolute>
  0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
  0000:00000000       ___guard_fids_table        00000000     <absolute>
- 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
  0000:00000000       ___hybrid_code_map         00000000     <absolute>
  0000:00000000       ___guard_iat_table         00000000     <absolute>
- 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
  0000:00000000       ___guard_flags             00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
  0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
  0000:00000000       ___safe_se_handler_table   00000000     <absolute>
  0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
@@ -41,28 +41,31 @@
  0001:00000000       _BugCheck3B@0              00401000 f   MyDrv.obj
  0001:00000050       _BugCheck50@0              00401050 f   MyDrv.obj
  0001:00000070       _BugCheck7F@0              00401070 f   MyDrv.obj
- 0001:00000080       _BugCheckA@0               00401080 f   MyDrv.obj
- 0001:000000a0       _BugCheckBE@0              004010a0 f   MyDrv.obj
- 0001:000000b0       _BugCheckC4@0              004010b0 f   MyDrv.obj
- 0001:000000e0       _BugCheckD6@0              004010e0 f   MyDrv.obj
- 0001:00000110       _Hang@0                    00401110 f   MyDrv.obj
- 0001:00000170       _HangDpcRoutine@16         00401170 f   MyDrv.obj
- 0001:00000190       _IoGetCurrentIrpStackLocation@4 00401190 f i MyDrv.obj
- 0001:000001a0       _MyStrCpy@8                004011a0 f   MyDrv.obj
- 0001:000001f0       _OnBreakPoint@0            004011f0 f   MyDrv.obj
- 0001:00000200       _OpenClose@4               00401200 f   MyDrv.obj
- 0001:000002a0       _PrintBreakPoint@4         004012a0 f   MyDrv.obj
- 0001:000002d0       _UseStack1@0               004012d0 f   MyDrv.obj
- 0001:000002e0       _UseStack2@0               004012e0 f   MyDrv.obj
- 0001:000002ef       _strcpy                    004012ef f   ntoskrnl:ntoskrnl.exe
- 0001:000002f5       _strlen                    004012f5 f   ntoskrnl:ntoskrnl.exe
- 0001:000002fb       _DbgPrint                  004012fb f   ntoskrnl:ntoskrnl.exe
- 0001:00000302       @_guard_check_icall_nop@4  00401302 f i BufferOverflowK:guard_support.obj
- 0001:00000304       ??_C@_1CA@LJKEIIIB@?$AA?2?$AA?$DP?$AA?$DP?$AA?2?$AAC?$AA?3?$AA?2?$AAb?$AAo?$AAo?$AAt?$AA?4?$AAi?$AAn?$AAi?$AA?$AA@FNODOBFM@ 00401304     MyDrv.obj
- 0001:00000324       ??_C@_0O@NFFNPMDP@BugCheck?50x3B?$AA@FNODOBFM@ 00401324     MyDrv.obj
- 0001:00000332       ??_C@_07PFLHHDCC@Find?5Me?$AA@FNODOBFM@ 00401332     MyDrv.obj
- 0001:0000033a       ??_C@_0BK@IFLFIICP@PrintBreakPoint?5Function?6?$AA@FNODOBFM@ 0040133a     MyDrv.obj
- 0001:00000354       ??_C@_0BC@MHHLDEIM@Hello?5Debugging?$CB?6?$AA@FNODOBFM@ 00401354     MyDrv.obj
+ 0001:000000b0       _BugCheckA@0               004010b0 f   MyDrv.obj
+ 0001:000000d0       _BugCheckBE@0              004010d0 f   MyDrv.obj
+ 0001:000000e0       _BugCheckC4@0              004010e0 f   MyDrv.obj
+ 0001:00000110       _BugCheckD6@0              00401110 f   MyDrv.obj
+ 0001:00000140       _Hang@0                    00401140 f   MyDrv.obj
+ 0001:000001a0       _HangDpcRoutine@16         004011a0 f   MyDrv.obj
+ 0001:000001c0       _IoGetCurrentIrpStackLocation@4 004011c0 f i MyDrv.obj
+ 0001:000001d0       _MyStrCpy@8                004011d0 f   MyDrv.obj
+ 0001:00000220       _OnBreakPoint@0            00401220 f   MyDrv.obj
+ 0001:00000230       _OpenClose@4               00401230 f   MyDrv.obj
+ 0001:000002f0       _PrintBreakPoint@4         004012f0 f   MyDrv.obj
+ 0001:00000320       _UseStack1@0               00401320 f   MyDrv.obj
+ 0001:00000360       _UseStack2@0               00401360 f   MyDrv.obj
+ 0001:000003a2       @__security_check_cookie@4 004013a2 f   BufferOverflowK:secchk.obj
+ 0001:000003b2       ___report_gsfailure        004013b2 f   BufferOverflowK:gs_report.obj
+ 0001:000003d8       _strcpy                    004013d8 f   ntoskrnl:ntoskrnl.exe
+ 0001:000003de       _strlen                    004013de f   ntoskrnl:ntoskrnl.exe
+ 0001:000003e4       _DbgPrint                  004013e4 f   ntoskrnl:ntoskrnl.exe
+ 0001:000003ea       _memset                    004013ea f   ntoskrnl:ntoskrnl.exe
+ 0001:000003f0       @_guard_check_icall_nop@4  004013f0 f i BufferOverflowK:guard_support.obj
+ 0001:000003f2       ??_C@_1CA@LJKEIIIB@?$AA?2?$AA?$DP?$AA?$DP?$AA?2?$AAC?$AA?3?$AA?2?$AAb?$AAo?$AAo?$AAt?$AA?4?$AAi?$AAn?$AAi?$AA?$AA@FNODOBFM@ 004013f2     MyDrv.obj
+ 0001:00000412       ??_C@_0O@NFFNPMDP@BugCheck?50x3B?$AA@FNODOBFM@ 00401412     MyDrv.obj
+ 0001:00000420       ??_C@_07PFLHHDCC@Find?5Me?$AA@FNODOBFM@ 00401420     MyDrv.obj
+ 0001:00000428       ??_C@_0BK@IFLFIICP@PrintBreakPoint?5Function?6?$AA@FNODOBFM@ 00401428     MyDrv.obj
+ 0001:00000442       ??_C@_0BC@MHHLDEIM@Hello?5Debugging?$CB?6?$AA@FNODOBFM@ 00401442     MyDrv.obj
  0002:00000000       __imp__strcpy              00402000     ntoskrnl:ntoskrnl.exe
  0002:00000004       __imp__strlen              00402004     ntoskrnl:ntoskrnl.exe
  0002:00000008       __imp__RtlInitUnicodeString@8 00402008     ntoskrnl:ntoskrnl.exe
@@ -91,10 +94,12 @@
  0002:00000064       __imp__IoDeleteSymbolicLink@4 00402064     ntoskrnl:ntoskrnl.exe
  0002:00000068       __imp__ZwCreateFile@44     00402068     ntoskrnl:ntoskrnl.exe
  0002:0000006c       __imp__ZwClose@4           0040206c     ntoskrnl:ntoskrnl.exe
- 0002:00000070       __imp__KeNumberProcessors  00402070     ntoskrnl:ntoskrnl.exe
- 0002:00000074       \177ntoskrnl_NULL_THUNK_DATA 00402074     ntoskrnl:ntoskrnl.exe
- 0002:00000078       ___guard_check_icall_fptr  00402078     BufferOverflowK:guard_support.obj
- 0002:000000b8       __load_config_used         004020b8     BufferOverflowK:loadcfg.obj
+ 0002:00000070       __imp__memset              00402070     ntoskrnl:ntoskrnl.exe
+ 0002:00000074       __imp__KeNumberProcessors  00402074     ntoskrnl:ntoskrnl.exe
+ 0002:00000078       __imp__KeBugCheckEx@20     00402078     ntoskrnl:ntoskrnl.exe
+ 0002:0000007c       \177ntoskrnl_NULL_THUNK_DATA 0040207c     ntoskrnl:ntoskrnl.exe
+ 0002:00000080       ___guard_check_icall_fptr  00402080     BufferOverflowK:guard_support.obj
+ 0002:000000c8       __load_config_used         004020c8     BufferOverflowK:loadcfg.obj
  0003:00000000       _g_ulGlobal                00403000     MyDrv.obj
  0003:00000004       ___security_cookie         00403004     BufferOverflowK:gs_support.obj
  0003:00000008       ___security_cookie_complement 00403008     BufferOverflowK:gs_support.obj
@@ -152,6 +157,8 @@
  0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
  0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
  0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
+ 0000:ffff9000       .debug$S                   00400000     ntoskrnl:ntoskrnl.exe
  0004:0000044c       $LN24                      0040444c     MyDrv.obj
  0004:00000494       $LN23                      00404494     MyDrv.obj
- 0005:000004b4       .idata$6                   004054b4     ntoskrnl:ntoskrnl.exe
+ 0005:000004d6       .idata$6                   004054d6     ntoskrnl:ntoskrnl.exe
