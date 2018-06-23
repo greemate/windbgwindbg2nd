@@ -1,0 +1,113 @@
+
+ADPlus Engine Version: 7.01.007 08/11/2011
+Command line arguments used were: 
+-crash -o C:\Dump -pn MyApp.exe 
+Output Directory: C:\Dump
+Output Dumps Directory: C:\Dump\20180616_220556_Crash_Mode
+
+
+==== ADPlus Engine Settings ====
+
+ADPlus built-in key words:
+   CUSTOMDUMP = /mdi
+   CUSTOMDUMPOVER = 
+   DLLS = !dlls
+   EVENTLOG = !elog_str
+   FULLDUMP = /mA
+   FULLDUMPOVER = 
+   HANDLE = !handle 0 0
+   HEAP = !heap 0 -k
+   LOADEDMODULES = lmv
+   LOCKS = !locks
+   LOG = 
+   MATCHINGSYMBOLS = lml
+   MINIDUMP = /mdi
+   MINIDUMPOVER = 
+   NOTIFY = !net_send
+   STACK = kvn250
+   STACKS = 
+   THREADTIME = .ttime
+   THREADUSAGE = !runaway
+   TIME = .time
+   VOID = 
+
+Default Exception Behavior:
+    Action1: Log;Time;Stack;MiniDump
+    Return1: GN
+    Action2: Log;Time;Stack;FullDump;EventLog
+    Return2: Q
+Default Event Behavior:
+    Action1: Log
+    Return1: GN
+
+Exceptions:
+av-AccessViolation
+    Default behavior
+ch-InvalidHandle
+    Default behavior
+ii-IllegalInstruction
+    Default behavior
+dz-IntegerDivide
+    Default behavior
+c000008e-FloatingDivide
+    Default behavior
+iov-IntegerOverflow
+    Default behavior
+lsq-InvalidLockSequence
+    Default behavior
+sov-StackOverflow
+    Default behavior
+aph-Application_hang
+    Default behavior
+cce-Ctl_C_Console_app
+    Default event behavior
+dm-Data_misaligned
+    Default behavior
+gp-Guard_page_violation
+    Default behavior
+ip-In_page_IO_error
+    Default behavior
+isc-Invalid_system_call
+    Default behavior
+sbo-Stack_buffer_overflow
+    Default behavior
+eh-CPlusPlusEH
+    Action1: Log;Time;Stack
+    Return1: GN
+    Action2: Log;Time;Stack;FullDump;EventLog
+    Return2: Q
+*-UnknownException
+    Action1: Log;Time;Stack
+    Return1: GN
+    Action2: Log;Time;Stack;FullDump;EventLog
+    Return2: Q
+clr-NET_CLR
+    Action1: VOID
+    Return1: GN
+    Action2: Log;Time;Stack;FullDump;EventLog
+    Return2: Q
+bpe-CONTRL_C_OR_Debug_Break
+    Action1: Log;Time;Stacks;MiniDump
+    Return1: VOID
+wkd-Wake_Debugger
+    Action1: Log;Time;Stacks;MiniDump
+    Return1: GN
+ld-DLL_Load
+    Default event behavior
+ud-DLL_UnLoad
+    Default event behavior
+epr-Process_Shut_Down
+    Action1: Log;Time;EventLog;Stacks;FullDump;ThreadUsage
+    Return1: Q
+
+Last script command: 
+Debugger: cdb.exe
+
+
+==== Additional Settings ====
+
+Quiet mode = True
+
+==== End of settings output ====
+
+Attaching to 2832 - MyApp in Crash mode 06/16/2018 22:05:57

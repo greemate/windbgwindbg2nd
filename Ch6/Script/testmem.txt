@@ -1,0 +1,6 @@
+$$ WinDbg script to get data above 2GB of physical memory in complete memory dump
+r $t0 = 0
+.for (r $t0 = 80000000; (@$t0 < ffffffff ); r $t0 = @$t0 + 4000)
+{
+    dc /p @$t0
+}

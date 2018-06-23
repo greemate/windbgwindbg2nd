@@ -1,0 +1,155 @@
+as AdpDumpDir C:\Dump\20180616_220556_Crash_Mode
+.logopen /t "${AdpDumpDir}\ADPlus_log.log"
+as AdpOutputDir C:\Dump
+as AdpDumpDirEsc C:\\Dump\\20180616_220556_Crash_Mode
+as AdpTimeStamp 20180616_220556
+*
+*----- OS and Time Information ----
+vertarget
+*
+*
+*----- ADPlus information ----
+*
+* ADPlus version: 7.01.007 08/11/2011
+*
+*-------------- Current settings -----------
+*| 
+*| ADPlus built-in key words:
+*|    CUSTOMDUMP = /mdi
+*|    CUSTOMDUMPOVER = 
+*|    DLLS = !dlls
+*|    EVENTLOG = !elog_str
+*|    FULLDUMP = /mA
+*|    FULLDUMPOVER = 
+*|    HANDLE = !handle 0 0
+*|    HEAP = !heap 0 -k
+*|    LOADEDMODULES = lmv
+*|    LOCKS = !locks
+*|    LOG = 
+*|    MATCHINGSYMBOLS = lml
+*|    MINIDUMP = /mdi
+*|    MINIDUMPOVER = 
+*|    NOTIFY = !net_send
+*|    STACK = kvn250
+*|    STACKS = 
+*|    THREADTIME = .ttime
+*|    THREADUSAGE = !runaway
+*|    TIME = .time
+*|    VOID = 
+*| 
+*| Default Exception Behavior:
+*|     Action1: Log;Time;Stack;MiniDump
+*|     Return1: GN
+*|     Action2: Log;Time;Stack;FullDump;EventLog
+*|     Return2: Q
+*| Default Event Behavior:
+*|     Action1: Log
+*|     Return1: GN
+*| 
+*| Exceptions:
+*| av-AccessViolation
+*|     Default behavior
+*| ch-InvalidHandle
+*|     Default behavior
+*| ii-IllegalInstruction
+*|     Default behavior
+*| dz-IntegerDivide
+*|     Default behavior
+*| c000008e-FloatingDivide
+*|     Default behavior
+*| iov-IntegerOverflow
+*|     Default behavior
+*| lsq-InvalidLockSequence
+*|     Default behavior
+*| sov-StackOverflow
+*|     Default behavior
+*| aph-Application_hang
+*|     Default behavior
+*| cce-Ctl_C_Console_app
+*|     Default event behavior
+*| dm-Data_misaligned
+*|     Default behavior
+*| gp-Guard_page_violation
+*|     Default behavior
+*| ip-In_page_IO_error
+*|     Default behavior
+*| isc-Invalid_system_call
+*|     Default behavior
+*| sbo-Stack_buffer_overflow
+*|     Default behavior
+*| eh-CPlusPlusEH
+*|     Action1: Log;Time;Stack
+*|     Return1: GN
+*|     Action2: Log;Time;Stack;FullDump;EventLog
+*|     Return2: Q
+*| *-UnknownException
+*|     Action1: Log;Time;Stack
+*|     Return1: GN
+*|     Action2: Log;Time;Stack;FullDump;EventLog
+*|     Return2: Q
+*| clr-NET_CLR
+*|     Action1: VOID
+*|     Return1: GN
+*|     Action2: Log;Time;Stack;FullDump;EventLog
+*|     Return2: Q
+*| bpe-CONTRL_C_OR_Debug_Break
+*|     Action1: Log;Time;Stacks;MiniDump
+*|     Return1: VOID
+*| wkd-Wake_Debugger
+*|     Action1: Log;Time;Stacks;MiniDump
+*|     Return1: GN
+*| ld-DLL_Load
+*|     Default event behavior
+*| ud-DLL_UnLoad
+*|     Default event behavior
+*| epr-Process_Shut_Down
+*|     Action1: Log;Time;EventLog;Stacks;FullDump;ThreadUsage
+*|     Return1: Q
+*| 
+*| Last script command: 
+*| Debugger: cdb.exe
+*| 
+*| Quiet mode = True
+*| 
+*-------------- End of current settings -----------
+.printf "%d", @$tpid
+!adplusext.adpextstart AdpDumpDir
+*
+as /c AdpProcID !adplusext.adpprocid
+as /c AdpHostComputer !adplusext.adphostcomputer
+*
+as /c AdpTargetComputer !adplusext.adptargetcomputer
+*
+as /c AdpProcName !adplusext.adpprocname
+*
+*
+*---Current Aliases---
+al
+*
+*---Current Symbol Path---
+.sympath
+*--- Configuring exceptions ---
+sxe -c @".echo FirstChance_av_AccessViolation;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_av_AccessViolation  ${AdpDumpDir}\MINIDUMP_FirstChance_av_AccessViolation_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_av_AccessViolation;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_av_AccessViolation  ${AdpDumpDir}\FULLDUMP_SecondChance_av_AccessViolation_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_av_AccessViolation in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  av
+sxe -c @".echo FirstChance_ch_InvalidHandle;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_ch_InvalidHandle  ${AdpDumpDir}\MINIDUMP_FirstChance_ch_InvalidHandle_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_ch_InvalidHandle;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_ch_InvalidHandle  ${AdpDumpDir}\FULLDUMP_SecondChance_ch_InvalidHandle_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_ch_InvalidHandle in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  ch
+sxe -c @".echo FirstChance_ii_IllegalInstruction;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_ii_IllegalInstruction  ${AdpDumpDir}\MINIDUMP_FirstChance_ii_IllegalInstruction_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_ii_IllegalInstruction;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_ii_IllegalInstruction  ${AdpDumpDir}\FULLDUMP_SecondChance_ii_IllegalInstruction_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_ii_IllegalInstruction in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  ii
+sxe -c @".echo FirstChance_dz_IntegerDivide;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_dz_IntegerDivide  ${AdpDumpDir}\MINIDUMP_FirstChance_dz_IntegerDivide_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_dz_IntegerDivide;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_dz_IntegerDivide  ${AdpDumpDir}\FULLDUMP_SecondChance_dz_IntegerDivide_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_dz_IntegerDivide in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  dz
+sxe -c @".echo FirstChance_c000008e_FloatingDivide;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_c000008e_FloatingDivide  ${AdpDumpDir}\MINIDUMP_FirstChance_c000008e_FloatingDivide_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_c000008e_FloatingDivide;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_c000008e_FloatingDivide  ${AdpDumpDir}\FULLDUMP_SecondChance_c000008e_FloatingDivide_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_c000008e_FloatingDivide in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  c000008e
+sxe -c @".echo FirstChance_iov_IntegerOverflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_iov_IntegerOverflow  ${AdpDumpDir}\MINIDUMP_FirstChance_iov_IntegerOverflow_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_iov_IntegerOverflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_iov_IntegerOverflow  ${AdpDumpDir}\FULLDUMP_SecondChance_iov_IntegerOverflow_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_iov_IntegerOverflow in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  iov
+sxe -c @".echo FirstChance_lsq_InvalidLockSequence;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_lsq_InvalidLockSequence  ${AdpDumpDir}\MINIDUMP_FirstChance_lsq_InvalidLockSequence_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_lsq_InvalidLockSequence;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_lsq_InvalidLockSequence  ${AdpDumpDir}\FULLDUMP_SecondChance_lsq_InvalidLockSequence_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_lsq_InvalidLockSequence in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  lsq
+sxe -c @".echo FirstChance_sov_StackOverflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_sov_StackOverflow  ${AdpDumpDir}\MINIDUMP_FirstChance_sov_StackOverflow_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_sov_StackOverflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_sov_StackOverflow  ${AdpDumpDir}\FULLDUMP_SecondChance_sov_StackOverflow_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_sov_StackOverflow in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  sov
+sxe -c @".echo FirstChance_aph_Application_hang;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_aph_Application_hang  ${AdpDumpDir}\MINIDUMP_FirstChance_aph_Application_hang_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_aph_Application_hang;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_aph_Application_hang  ${AdpDumpDir}\FULLDUMP_SecondChance_aph_Application_hang_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_aph_Application_hang in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  aph
+sxi -c @".echo FirstChance_cce_Ctl_C_Console_app;;GN"  cce
+sxe -c @".echo FirstChance_dm_Data_misaligned;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_dm_Data_misaligned  ${AdpDumpDir}\MINIDUMP_FirstChance_dm_Data_misaligned_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_dm_Data_misaligned;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_dm_Data_misaligned  ${AdpDumpDir}\FULLDUMP_SecondChance_dm_Data_misaligned_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_dm_Data_misaligned in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  dm
+sxe -c @".echo FirstChance_gp_Guard_page_violation;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_gp_Guard_page_violation  ${AdpDumpDir}\MINIDUMP_FirstChance_gp_Guard_page_violation_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_gp_Guard_page_violation;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_gp_Guard_page_violation  ${AdpDumpDir}\FULLDUMP_SecondChance_gp_Guard_page_violation_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_gp_Guard_page_violation in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  gp
+sxe -c @".echo FirstChance_ip_In_page_IO_error;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_ip_In_page_IO_error  ${AdpDumpDir}\MINIDUMP_FirstChance_ip_In_page_IO_error_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_ip_In_page_IO_error;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_ip_In_page_IO_error  ${AdpDumpDir}\FULLDUMP_SecondChance_ip_In_page_IO_error_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_ip_In_page_IO_error in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  ip
+sxe -c @".echo FirstChance_isc_Invalid_system_call;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_isc_Invalid_system_call  ${AdpDumpDir}\MINIDUMP_FirstChance_isc_Invalid_system_call_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_isc_Invalid_system_call;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_isc_Invalid_system_call  ${AdpDumpDir}\FULLDUMP_SecondChance_isc_Invalid_system_call_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_isc_Invalid_system_call in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  isc
+sxe -c @".echo FirstChance_sbo_Stack_buffer_overflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mdi /c FirstChance_sbo_Stack_buffer_overflow  ${AdpDumpDir}\MINIDUMP_FirstChance_sbo_Stack_buffer_overflow_${AdpProcName}_.dmp;GN" -c2 @".echo SecondChance_sbo_Stack_buffer_overflow;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_sbo_Stack_buffer_overflow  ${AdpDumpDir}\FULLDUMP_SecondChance_sbo_Stack_buffer_overflow_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_sbo_Stack_buffer_overflow in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  sbo
+sxe -c @".echo FirstChance_eh_CPlusPlusEH;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;;GN" -c2 @".echo SecondChance_eh_CPlusPlusEH;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_eh_CPlusPlusEH  ${AdpDumpDir}\FULLDUMP_SecondChance_eh_CPlusPlusEH_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_eh_CPlusPlusEH in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  eh
+sxe -c @".echo FirstChance_star_UnknownException;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;;GN" -c2 @".echo SecondChance_star_UnknownException;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_star_UnknownException  ${AdpDumpDir}\FULLDUMP_SecondChance_star_UnknownException_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_star_UnknownException in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  *
+sxi -c @"GN" -c2 @".echo SecondChance_clr_NET_CLR;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stack below ---;kvn250;.echo;.dump -u /mA /c SecondChance_clr_NET_CLR  ${AdpDumpDir}\FULLDUMP_SecondChance_clr_NET_CLR_${AdpProcName}_.dmp;!elog_str ADPlus detected a SecondChance_clr_NET_CLR in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;Q"  clr
+sxi -c @".echo FirstChance_bpe_CONTRL_C_OR_Debug_Break;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stacks below ---;~*kvn250;.echo;.dump -u /mdi /c FirstChance_bpe_CONTRL_C_OR_Debug_Break  ${AdpDumpDir}\MINIDUMP_FirstChance_bpe_CONTRL_C_OR_Debug_Break_${AdpProcName}_.dmp"  bpe
+sxi -c @".echo FirstChance_wkd_Wake_Debugger;.echo;.echo Current time: ;.time;.echo;.echo;.echo Call stacks below ---;~*kvn250;.echo;.dump -u /mdi /c FirstChance_wkd_Wake_Debugger  ${AdpDumpDir}\MINIDUMP_FirstChance_wkd_Wake_Debugger_${AdpProcName}_.dmp;GN"  wkd
+sxi -c @".echo FirstChance_ld_DLL_Load;;GN"  ld
+sxn -c @".echo FirstChance_ud_DLL_UnLoad;;GN"  ud
+sxi -c @".echo FirstChance_epr_Process_Shut_Down;.echo;.echo Current time: ;.time;.echo;!elog_str ADPlus detected a FirstChance_epr_Process_Shut_Down in AdpProcName with Process ID AdpProcID and the output directory is AdpDumpDir;.echo;.echo Call stacks below ---;~*kvn250;.echo;.dump -u /mA /c FirstChance_epr_Process_Shut_Down  ${AdpDumpDir}\FULLDUMP_FirstChance_epr_Process_Shut_Down_${AdpProcName}_.dmp;.echo;.echo Thread Usage Information: ;!runaway;.echo;;Q"  epr
+g

@@ -1,0 +1,68 @@
+as AdpDumpDir C:\Dump\20180616_222100_Hang_Mode
+.logopen /t "${AdpDumpDir}\ADPlus_log.log"
+as AdpOutputDir C:\Dump
+as AdpDumpDirEsc C:\\Dump\\20180616_222100_Hang_Mode
+as AdpTimeStamp 20180616_222100
+*
+*----- OS and Time Information ----
+vertarget
+*
+*
+*----- ADPlus information ----
+*
+* ADPlus version: 7.01.007 08/11/2011
+*
+*-------------- Current settings -----------
+*| 
+*| ADPlus built-in key words:
+*|    CUSTOMDUMP = /mdi
+*|    CUSTOMDUMPOVER = 
+*|    DLLS = !dlls
+*|    EVENTLOG = !elog_str
+*|    FULLDUMP = /mA
+*|    FULLDUMPOVER = 
+*|    HANDLE = !handle 0 0
+*|    HEAP = !heap 0 -k
+*|    LOADEDMODULES = lmv
+*|    LOCKS = !locks
+*|    LOG = 
+*|    MATCHINGSYMBOLS = lml
+*|    MINIDUMP = /mdi
+*|    MINIDUMPOVER = 
+*|    NOTIFY = !net_send
+*|    STACK = kvn250
+*|    STACKS = 
+*|    THREADTIME = .ttime
+*|    THREADUSAGE = !runaway
+*|    TIME = .time
+*|    VOID = 
+*| 
+*| Hang Configuration: FullDump;ThreadUsage
+*| 
+*| Last script command: 
+*| Debugger: cdb.exe
+*| 
+*| Quiet mode = True
+*| 
+*-------------- End of current settings -----------
+.printf "%d", @$tpid
+!adplusext.adpextstart AdpDumpDir
+*
+as /c AdpProcID !adplusext.adpprocid
+as /c AdpHostComputer !adplusext.adphostcomputer
+*
+as /c AdpTargetComputer !adplusext.adptargetcomputer
+*
+as /c AdpProcName !adplusext.adpprocname
+*
+*
+*---Current Aliases---
+al
+*
+*---Current Symbol Path---
+.sympath
+*--- Configuring hang mode commands ---
+.dump -u /mA /c HangMode  ${AdpDumpDir}\FULLDUMP_HangMode_${AdpProcName}_.dmp
+.echo;.echo Thread Usage Information: ;!runaway;.echo;
+.logclose
+qd

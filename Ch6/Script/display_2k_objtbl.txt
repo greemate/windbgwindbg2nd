@@ -1,0 +1,67 @@
+$$
+$$ WinDbg script to display ObjectTable in a process
+$$
+$$ 프로세스 정보중 ObjectTable 의 주소를 입력받아서 옵젝트 테이블(핸들 테이블)에
+$$ 존재하는 모든 옵젝트(핸들의 대상)의 타입을 보여준다.
+$$
+$$ 대상 OS 는 Win2k 이다.
+$$ XP 는 핸들 테이블 구조가 다르므로 이 스크립트를 적용할 수 없다.
+$$
+$$ 사용예) kd> $$>a<myscript\display_2k_objtbl.txt 81bc0828  
+$$
+$$ Written by GreeMate
+$$
+
+$$ 파라미터로 전달된 arg1 값을 가상 레지스터 $t10 에 대입한다.
+r $t10 = ${$arg1}
+.printf "ObjectTable: %x\n", @$t10
+
+$$ ObjectTable 은 _HANDLE_TABLE 타입이므로 C++ 형식으로 접근해서 Table 주소를 구한다.
+r $t10 = @@c++(((nt!_HANDLE_TABLE *)@$t10)->Table)
+.printf "ObjectTable->Table: %x\n", @$t10
+
+$$ Win2k 핸들 테이블은 3 Level 포인터로 256개씩 구성되어 있으므로 순차적으로 접근한다.
+.for (r $t0 = 0; (@$t0 < 0n256); r $t0 = @$t0 + 1)
+{
+	$$ Table 포인터가 0 이면 중지하고 아니면 포인터의 값을 $t11 에 대입한다.
+	.if (@$t10 == 0)	{ .break }
+	r $t11 = poi(@$t10)
+
+	$$ 다음 레벨의 포인터 테이블을 순차적으로 접근한다.
+	.for (r $t1 = 0; (@$t1 < 0n256); r $t1 = @$t1 + 1)
+	{
+		$$ Table 포인터가 0 이면 중지하고 아니면 포인터의 값을 $t12 에 대입한다.
+		.if (@$t11 == 0)	{ .break }
+		r $t12 = poi(@$t11)
+	
+		$$ 다음 레벨의 포인터 테이블을 순차적으로 접근한다.
+		.for (r $t2 = 0; (@$t2 < 0n256); r $t2 = @$t2 + 1)
+		{
+			.if (@$t12 == 0)	{ .break }
+		
+			$$ 실제 테이블에는 ObjectHeader 포인터와 AccessMask 가 저장되어 있다.
+			$$ 따라서 8 바이트씩 건너 뛰어야 ObjectHeader 를 순차적으로 접근할 수 있다.
+			r $t19 = @$t12 + (@$t2 * 8)
+			
+			$$ 저장된 ObjectHeader 포인터가 0 이면 건너뛴다.
+			.if (poi(@$t19) == 0)	{ .continue }
+
+			$$ 저장된 ObjectHeader 포인터는 특별한 목적으로 최상위 비트가 Clear 되어 저장되므로 최상위비트를 켜준다.
+			r $t19 = poi(@$t19) + 0x80000000
+			.printf "Object Header: %x\n", @$t19
+			
+			$$ $t19는 ObjectHeader이므로 C++ 형식으로 접근해서 Type 필드를 구한다.
+			r $t19 = @@c++(((nt!_OBJECT_HEADER *)@$t19)->Type)
+			.printf "Object Type : %x\n", @$t19
+
+			$$ ObjectType 구조체에서 Name 필드를 표시한다.
+			dt nt!_OBJECT_TYPE Name @$t19
+		}
+		
+		$$ 테이블의 다음 엔트리로
+		r $t11 = @$t11 + 4
+	}
+
+	$$ 테이블의 다음 엔트리로
+	r $t10 = @$t10 + 4
+}

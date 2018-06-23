@@ -1,5 +1,6 @@
 Debug
 vc141.pdb
+.vs
 *.user
 *.pch
 *.idb
@@ -11,3 +12,4 @@ vc141.pdb
 *.log
 *.res
 *.sbr
+*.exp

@@ -1,0 +1,46 @@
+
+ADPlus Engine Version: 7.01.007 08/11/2011
+Command line arguments used were: 
+-hang -o C:\Dump -pn MyApp.exe 
+Output Directory: C:\Dump
+Output Dumps Directory: C:\Dump\20180616_222100_Hang_Mode
+
+
+==== ADPlus Engine Settings ====
+
+ADPlus built-in key words:
+   CUSTOMDUMP = /mdi
+   CUSTOMDUMPOVER = 
+   DLLS = !dlls
+   EVENTLOG = !elog_str
+   FULLDUMP = /mA
+   FULLDUMPOVER = 
+   HANDLE = !handle 0 0
+   HEAP = !heap 0 -k
+   LOADEDMODULES = lmv
+   LOCKS = !locks
+   LOG = 
+   MATCHINGSYMBOLS = lml
+   MINIDUMP = /mdi
+   MINIDUMPOVER = 
+   NOTIFY = !net_send
+   STACK = kvn250
+   STACKS = 
+   THREADTIME = .ttime
+   THREADUSAGE = !runaway
+   TIME = .time
+   VOID = 
+
+Hang Configuration: FullDump;ThreadUsage
+
+Last script command: 
+Debugger: cdb.exe
+
+
+==== Additional Settings ====
+
+Quiet mode = True
+
+==== End of settings output ====
+
+Attaching to 4688 - MyApp in Hang mode 06/16/2018 22:21:00
