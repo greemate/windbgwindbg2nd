@@ -1,0 +1,85 @@
+$$
+$$ WinDbg script to display Handle Entry or Pointer Array
+$$
+$$ 첫번째 파라미터로 입력받은 주소가 Handle Entry면 핸들과 오브젝트 정보를 보여주고
+$$ Handle Entry Pointer Array면 Handle Entry를 찾아간다.
+$$ 두번째 파라미터는 Handle Entry 출력시 사용할 시작 핸들값이다.
+$$
+$$ 대상 OS 는 Win10(x64)이다.
+$$ 다른 OS는 핸들 테이블 구조가 다르므로 이 스크립트를 적용할 수 없다.
+$$
+$$ 사용예) kd> $$>a<myscript\display_10_objtbl_sub.txt ffffd00f`1e6cb000 0 
+$$
+$$ Written by GreeMate
+$$
+
+$$ 파라미터로 전달된 arg1, arg2 값을 가상 레지스터 $t1, $t8 에 대입한다.
+r $t1 = ${$arg1}
+r $t8 = ${$arg2}
+.printf "Parameter: %p, %x\n", @$t1, @$t8
+
+$$ 첫번째 필드로 Handle Entry인지 Pointer Array인지 확인한다.
+r $t2 = poi(@$t1)
+.if (@$t2 ==0)
+{
+$$.printf "Handle Entry\n"
+
+	$$ _HANDLE_TABLE_ENTRY 크기를 구해 놓는다.
+	r $t3 = @@c++(sizeof(nt!_HANDLE_TABLE_ENTRY))
+
+	$$ 핸들테이블의 최대 카운트 256까지 순회한다. (x64는 256개, x86은 512개)
+	$$ 첫번째 엔트리는 사용하지 않으므로 1부터 시작한다.
+	.for (r $t4 = 1; (@$t4 < 0n256); r $t4 = @$t4+1)
+	{
+		$$ Handle Entry 주소에 (sizeof_HANDLE_TABLE_ENTRY * index)를 더하면 각 엔트리 위치다.
+		r $t5 = @$t1 + (@$t3 * @$t4)
+$$		.printf "Entry(%d, %p)\n", @$t4, @$t5
+
+		$$ ObjectPointerBits 비트필드 값을 참조한다.
+		r $t6 = @@c++(((nt!_HANDLE_TABLE_ENTRY *)@$t5)->ObjectPointerBits)
+
+		$$ 오브젝트 포인터가 0이면 해제된 핸들이다.
+		.if (@$t6 == 0)	
+		{
+$$			.printf "Handle: %04x, free handle,\n", (@$t4 * 4)		
+			.continue
+		}
+
+		$$ 상위 16비트는 0xffff로 만들어주고 하위 4비트는 0으로 채워준다.
+		r $t6 = @@c++(@$t6<<4 | 0xffff000000000000)
+
+		$$ 오브젝트 헤더 주소에 0x30을 더해 오브젝트 주소를 구한다.
+		r $t6 = @$t6 + 0x30
+
+		$$ GrantedAccessBits 비트필드 값을 참조한다.
+		r $t7 = @@c++(((nt!_HANDLE_TABLE_ENTRY *)@$t5)->GrantedAccessBits)
+
+		$$ 오브젝트 주소와 GrantedAccess 값을 출력한다.
+		.printf "Handle: %04x, Object: %p, GrantedAccess: %08x\n", (@$t4 * 4) + @$t8, @$t6, @$t7
+	}
+}
+.else
+{
+$$.printf "Pointer Array\n"
+
+	$$ 핸들 테이블 포인터 어레이 주소를 $t9에 저장한다.
+	r $t9 = @$t1
+
+	$$ 오프셋 계산을 위해 포인터 크기를 구해 놓는다.
+	r $t10 = @@c++(sizeof(void*))
+
+	.for (r $t11 = 0; (@$t11 < 0n256); r $t11 = @$t11+1)
+	{
+		$$ Poniter Array 하나씩 핸들 테이블을 출력한다. 
+		r $t12 = @$t9 + (@$t10 * @$t11)
+		r $t13 = poi(@$t12)
+		.if (@$t13 == 0)	{ .break }
+
+		$$ Pointer Array의 시작 핸들값을 구한다. (256개 * 4단위 핸들값)
+		r $t14 = @$t11 * 0n256 * 4
+		
+		$$ 재귀호출로 하위 핸들 테이블 엔트리를 출력한다.
+		$$>a<x64\myscript\display_10_handle_sub.txt @$t13 @$t14
+		.printf "---------------------------------------------------------------\n"
+	}		
+}

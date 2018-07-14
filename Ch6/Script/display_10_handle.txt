@@ -1,0 +1,44 @@
+$$
+$$ WinDbg script to display handles in a process
+$$
+$$ 프로세스 주소를 입력받아서 옵젝트 테이블(핸들 테이블)에 존재하는 
+$$ 모든 핸들의 오브젝트 주소를 보여준다.
+$$
+$$ 대상 OS 는 Win10(x64)이다.
+$$ 다른 OS는 핸들 테이블 구조가 다르므로 이 스크립트를 적용할 수 없다.
+$$
+$$ 사용예) kd> $$>a<myscript\display_10_handle.txt ffff93208420400(프로세스주소)
+$$         
+$$ Written by GreeMate
+$$
+
+$$ 파라미터로 전달된 프로세스 주소를 출력한다.
+.printf "Process: %p\n", ${$arg1}
+
+$$ 파라미터로 전달된 arg1 값을 가상 레지스터 $t16 에 대입한다.
+r $t16 = ${$arg1}
+
+$$ 프로세스 주소에서 ObjectTable 주소를 구한다.
+r $t16 = @@c++(((nt!_EPROCESS *)@$t16)->ObjectTable)
+.printf "ObjectTable: %p\n", @$t16
+
+$$ ObjectTable 은 _HANDLE_TABLE 타입이므로 C++ 형식으로 접근해서 Table 주소를 구한다.
+r $t16 = @@c++(((nt!_HANDLE_TABLE *)@$t16)->TableCode)
+.printf "ObjectTable->TableCode: %p\n", @$t16
+
+$$ 하위 4비트를 추출한다.
+r $t17 = @@c++(@$t16 & 0xf)
+
+$$ 깊이가 1 이하인 경우만 진행한다.
+.if (@$t17 <= 1)
+{
+	$$ 하위 4비트 클리어
+	r $t17 = @@c++(@$t16 & ~15)
+
+	$$ 핸들테이블 순회 스크립트 호출
+	$$>a<x64\myscript\display_10_handle_sub.txt @$t17 0
+}
+.else
+{
+.printf "Can't deal with %d depth\n", @$t17
+}
