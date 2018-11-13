@@ -1,4 +1,4 @@
-
+ 
 ADPlus Engine Version: 7.01.007 08/11/2011
 Command line arguments used were: 
 -crash -o C:\Dump -pn MyApp.exe 
